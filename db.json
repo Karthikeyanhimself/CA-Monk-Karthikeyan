@@ -117,6 +117,18 @@
       "date": "2025-12-10T16:30:00.000Z",
       "coverImage": "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
       "content": "Ethics form the backbone of trust in financial systems. With increased automation and complex instruments, ethical judgment plays a crucial role in decision-making. Short-term gains achieved through unethical practices often lead to long-term damage.\n\nProfessionals must prioritize transparency, integrity, and accountability. Strong ethical frameworks protect not only clients but also the credibility of the profession.\n\nIn an era of rapid change, ethics remain a constant guiding principle."
+    },
+    {
+      "id": "90ed1a77-605c-4011-98fe-adcdfe6e1d17",
+      "title": "The future of React JS",
+      "category": [
+        "Tech",
+        "Software Career"
+      ],
+      "description": "Test1 Short Description",
+      "coverImage": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+      "content": "Test1.1 Full Context",
+      "date": "2026-01-21T09:32:37.879Z"
     }
   ]
 }

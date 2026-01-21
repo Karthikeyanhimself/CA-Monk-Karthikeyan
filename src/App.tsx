@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { Layout } from "@/components/common/Layout";
+import { BlogCard } from "@/components/features/blog/BlogCard";
+import { BlogDetail } from "@/components/features/blog/BlogDetail";
+import { BlogListSkeleton } from "@/components/features/blog/BlogSkeletons";
+import { useBlogs, useBlog } from "@/hooks/useBlogs";
 
-function App() {
-  const [count, setCount] = useState(0)
+// 1. The Main Dashboard Component
+function Dashboard() {
+  const { id } = useParams();
+  const { data: blogs, isLoading: isListLoading } = useBlogs();
+  const { data: selectedBlog, isLoading: isDetailLoading } = useBlog(id || "");
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Layout
+      // LEFT PANEL
+      sidebarContent={
+        isListLoading ? (
+          <BlogListSkeleton />
+        ) : (
+          blogs?.map((blog) => (
+            <BlogCard
+              key={blog.id}
+              blog={blog}
+              isActive={blog.id === id}
+            />
+          ))
+        )
+      }
+
+      // RIGHT PANEL
+      mainContent={
+        <BlogDetail
+          blog={selectedBlog}
+          isLoading={isDetailLoading}
+        />
+      }
+    />
+  );
 }
 
-export default App
+// 2. The Router Wrapper
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/blogs/:id" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
