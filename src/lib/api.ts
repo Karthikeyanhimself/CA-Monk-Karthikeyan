@@ -2,7 +2,6 @@ import type { Blog } from "@/types";
 
 const API_URL = "http://localhost:3001";
 
-// Helper to handle HTTP errors standardly
 async function handleResponse<T>(response: Response): Promise<T> {
     if (!response.ok) {
         const errorText = await response.text();
@@ -13,7 +12,6 @@ async function handleResponse<T>(response: Response): Promise<T> {
 
 export const api = {
     getBlogs: async (): Promise<Blog[]> => {
-        // Sort by date descending (newest first)
         const res = await fetch(`${API_URL}/blogs?_sort=date&_order=desc`);
         return handleResponse<Blog[]>(res);
     },
@@ -29,7 +27,7 @@ export const api = {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 ...blog,
-                id: crypto.randomUUID(), // Generate secure ID
+                id: crypto.randomUUID(),
                 date: new Date().toISOString(),
             }),
         });

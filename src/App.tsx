@@ -1,45 +1,51 @@
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { AlertCircle } from "lucide-react";
 import { Layout } from "@/components/common/Layout";
 import { BlogCard } from "@/components/features/blog/BlogCard";
 import { BlogDetail } from "@/components/features/blog/BlogDetail";
 import { BlogListSkeleton } from "@/components/features/blog/BlogSkeletons";
+import { InfiniteBlogList } from "@/components/features/blog/InfiniteBlogList"; 
 import { useBlogs, useBlog } from "@/hooks/useBlogs";
 
-// 1. The Main Dashboard Component
 function Dashboard() {
   const { id } = useParams();
-  const { data: blogs, isLoading: isListLoading } = useBlogs();
+
+  const { data: blogs, isLoading: isListLoading, isError, error } = useBlogs();
   const { data: selectedBlog, isLoading: isDetailLoading } = useBlog(id || "");
 
   return (
     <Layout
-      // LEFT PANEL
+      
       sidebarContent={
-        isListLoading ? (
-          <BlogListSkeleton />
-        ) : (
-          blogs?.map((blog) => (
+        <>
+          {isListLoading && <BlogListSkeleton />}
+
+          {blogs?.map((blog) => (
             <BlogCard
               key={blog.id}
               blog={blog}
               isActive={blog.id === id}
             />
-          ))
-        )
+          ))}
+        </>
       }
 
-      // RIGHT PANEL
+      
       mainContent={
-        <BlogDetail
-          blog={selectedBlog}
-          isLoading={isDetailLoading}
-        />
+        
+        id ? (
+          <BlogDetail
+            blog={selectedBlog}
+            isLoading={isDetailLoading}
+          />
+        ) : (
+          <InfiniteBlogList blogs={blogs} />
+        )
       }
     />
   );
 }
 
-// 2. The Router Wrapper
 function App() {
   return (
     <BrowserRouter>

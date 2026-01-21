@@ -24,7 +24,7 @@ export function BlogListSkeleton() {
 export function BlogDetailSkeleton() {
     return (
         <div className="max-w-3xl space-y-8 animate-pulse">
-            {/* Header Meta */}
+            {}
             <div className="space-y-4">
                 <div className="flex gap-2">
                     <Skeleton className="h-6 w-20 rounded-full" />
@@ -40,10 +40,10 @@ export function BlogDetailSkeleton() {
                 </div>
             </div>
 
-            {/* Hero Image */}
+            {}
             <Skeleton className="aspect-video w-full rounded-xl" />
 
-            {/* Body Content */}
+            {}
             <div className="space-y-4 pt-4">
                 <Skeleton className="h-4 w-full" />
                 <Skeleton className="h-4 w-full" />

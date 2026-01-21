@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreateBlog } from "@/hooks/useBlogs";
-// ✅ FIXED: Added 'type' keyword inline
+
 import { blogFormSchema, type BlogFormValues } from "@/lib/validators";
 
 interface CreateBlogFormProps {
@@ -21,7 +21,7 @@ interface CreateBlogFormProps {
 }
 
 export function CreateBlogForm({ onSuccess }: CreateBlogFormProps) {
-    // ... (rest of the code remains exactly the same)
+    
     const form = useForm<BlogFormValues>({
         resolver: zodResolver(blogFormSchema),
         defaultValues: {

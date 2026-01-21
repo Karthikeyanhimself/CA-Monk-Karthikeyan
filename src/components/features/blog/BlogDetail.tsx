@@ -17,25 +17,15 @@ export function BlogDetail({ blog, isLoading }: BlogDetailProps) {
     if (!blog) {
         return (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-                <div className="bg-slate-100 p-6 rounded-full">
-                    <span className="text-4xl">👋</span>
-                </div>
-                <div className="space-y-2">
-                    <h2 className="text-2xl font-bold tracking-tight text-slate-900">
-                        Select an article
-                    </h2>
-                    <p className="text-slate-500 max-w-xs mx-auto">
-                        Choose a post from the sidebar to start reading.
-                    </p>
-                </div>
+                {}
             </div>
         );
     }
 
-    // ✅ Changed 'max-w-3xl' to 'max-w-5xl' to fill more space while keeping text readable
+    
     return (
         <article className="max-w-5xl space-y-8 pb-20 mx-auto">
-            {/* Header Meta */}
+            {}
             <div className="space-y-4">
                 <div className="flex items-center gap-2">
                     {blog.category.map((cat) => (
@@ -63,7 +53,7 @@ export function BlogDetail({ blog, isLoading }: BlogDetailProps) {
                 </div>
             </div>
 
-            {/* Hero Image - Stays Full Width relative to container */}
+            {}
             <div className="relative aspect-video overflow-hidden rounded-xl border bg-slate-100 shadow-sm w-full">
                 <img
                     src={blog.coverImage}
@@ -74,12 +64,12 @@ export function BlogDetail({ blog, isLoading }: BlogDetailProps) {
 
             <Separator />
 
-            {/* ✅ Constrain ONLY the text width for readability (approx 80 chars per line) */}
+            {}
             <div className="prose prose-slate prose-lg max-w-4xl text-slate-600 leading-relaxed whitespace-pre-wrap">
                 {blog.content}
             </div>
 
-            {/* Footer Action */}
+            {}
             <div className="flex items-center justify-between pt-8 border-t max-w-4xl">
                 <p className="font-semibold text-slate-900">Enjoyed this read?</p>
                 <Button>Share Article</Button>

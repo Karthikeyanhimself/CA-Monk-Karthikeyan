@@ -12,14 +12,17 @@ interface BlogCardProps {
 
 export function BlogCard({ blog, isActive }: BlogCardProps) {
     return (
-        <Link to={`/blogs/${blog.id}`}>
+        <Link to={`/blogs/${blog.id}`} className="block perspective-1000">
             <article className="group relative">
                 <Card
                     className={cn(
-                        "cursor-pointer transition-all duration-200 hover:shadow-md border-transparent bg-transparent shadow-none",
+                        
+                        "cursor-pointer transition-all duration-300 backdrop-blur-md border shadow-lg",
+                        "bg-white/20 border-white/40 border-b-white/10 border-r-white/10", 
+
                         isActive
-                            ? "bg-white shadow-sm border-slate-200 ring-1 ring-slate-900/5"
-                            : "hover:bg-white/50"
+                            ? "bg-white/40 border-white/60 shadow-xl scale-[1.02]"
+                            : "hover:bg-white/30 hover:shadow-2xl hover:-translate-y-1"
                     )}
                 >
                     <CardHeader className="p-4 pb-2 space-y-2">
@@ -28,21 +31,23 @@ export function BlogCard({ blog, isActive }: BlogCardProps) {
                                 <Badge
                                     key={cat}
                                     variant="secondary"
-                                    className="text-[10px] uppercase tracking-wider font-semibold text-slate-500 bg-slate-100"
+                                    
+                                    
+                                    className="text-[10px] uppercase tracking-wider font-bold text-black bg-white border border-slate-200 shadow-sm"
                                 >
                                     {cat}
                                 </Badge>
                             ))}
                         </div>
-                        <CardTitle className="text-base font-bold leading-tight text-slate-900 group-hover:text-indigo-600 transition-colors">
+                        <CardTitle className="text-base font-bold leading-tight text-black group-hover:text-black transition-colors">
                             {blog.title}
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 pt-0">
-                        <p className="text-sm text-slate-500 line-clamp-2 mb-3">
+                        <p className="text-sm text-black line-clamp-2 mb-3 font-medium opacity-90">
                             {blog.description}
                         </p>
-                        <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
+                        <div className="flex items-center justify-between text-xs text-black font-bold opacity-80">
                             <span>{formatDistanceToNow(new Date(blog.date))} ago</span>
                             {blog.readTime && <span>{blog.readTime}</span>}
                         </div>

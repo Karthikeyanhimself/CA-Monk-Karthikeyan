@@ -4,44 +4,31 @@
 
 @layer base {
   :root {
-    /* --- 1. DEFINE YOUR PALETTE (HSL Values) --- */
+    
+    --bg-gradient-start: #c5d3e8;
+    
+    --bg-gradient-end: #93a1bd;
+    
 
-    /* Background: #a0aecd (Blue-Grey) */
-    --background: 222 32% 72%;
-
-    /* Text: #000000 (Black) */
+    
     --foreground: 0 0% 0%;
-
-    /* Cards: Match background (#a0aecd) */
     --card: 222 32% 72%;
     --card-foreground: 0 0% 0%;
-
-    /* Popovers: Match background */
     --popover: 222 32% 72%;
     --popover-foreground: 0 0% 0%;
-
-    /* Buttons: Black background, Light text */
     --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 90%;
-
-    /* Muted/Secondary: Darker Grey for contrast */
+    --primary-foreground: 0 0% 100%;
     --secondary: 222 20% 60%;
     --secondary-foreground: 0 0% 0%;
-
     --muted: 222 20% 60%;
     --muted-foreground: 0 0% 20%;
-
     --accent: 222 20% 60%;
     --accent-foreground: 0 0% 0%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-
     --border: 0 0% 0%;
-    /* Black borders */
     --input: 0 0% 0%;
     --ring: 0 0% 0%;
-
     --radius: 0.5rem;
   }
 }
@@ -51,18 +38,19 @@
     @apply border-border;
   }
 
-  /* --- 2. FORCE GLOBAL STYLES --- */
-
+  
   html,
   body {
-    background-color: #a0aecd !important;
-    /* Force Blue-Grey */
+    
+    background: radial-gradient(circle at 50% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%) !important;
+    background-attachment: fixed !important;
+    
+    min-height: 100vh;
     color: #000000 !important;
-    /* Force Black Text */
     font-family: "Plus Jakarta Sans", sans-serif;
   }
 
-  /* --- 3. FORCE TITLES TO #e5e5e5 --- */
+  
   h1,
   h2,
   h3,
@@ -74,36 +62,25 @@
   .text-lg,
   .font-bold,
   .font-semibold {
-    color: #e5e5e5 !important;
-    /* Force Light Platinum */
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
-    /* Add shadow so it is readable on light bg */
-  }
-
-  /* --- 4. FORCE SELECTION HIGHLIGHT --- */
-  ::selection {
-    background-color: #e5e5e5 !important;
     color: #000000 !important;
+    text-shadow: none !important;
   }
 }
 
-/* --- 5. COMPONENT OVERRIDES --- */
 
-/* Force Cards to be transparent or match background */
-.bg-white {
-  background-color: #a0aecd !important;
-  color: #000000 !important;
-}
-
-/* Force Text Colors */
 .text-slate-900,
 .text-slate-500,
-.text-gray-500 {
+.text-gray-500,
+.text-white {
   color: #000000 !important;
 }
 
-/* Force specific title classes used by Shadcn */
-.text-slate-900.font-bold,
-.card-title {
-  color: #e5e5e5 !important;
+button .text-white,
+.bg-black .text-white,
+.group:hover .text-indigo-900 {
+  color: #ffffff !important;
+}
+
+.bg-black {
+  color: white !important;
 }

@@ -8,13 +8,24 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				// ✅ Plus Jakarta Sans locked in
 				sans: ['"Plus Jakarta Sans"', "sans-serif"],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			// ✅ UPDATED ANIMATION LOGIC
+			animation: {
+				"marquee": "marquee 50s linear infinite",
+			},
+			keyframes: {
+				marquee: {
+					"0%": { transform: "translateX(0)" },
+					// ✅ FIXED: Move -33.33% because we have 3 sets of cards. 
+					// This ensures a seamless loop.
+					"100%": { transform: "translateX(-33.333333%)" },
+				},
 			},
 			colors: {
 				background: 'hsl(var(--background))',
